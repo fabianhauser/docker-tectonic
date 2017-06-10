@@ -8,11 +8,14 @@ ARG VERSION=0.1.5
 RUN conda config --add channels conda-forge && conda config --add channels pkgw-forge
 RUN conda install -y tectonic=${VERSION}
 
-RUN addgroup --gid ${GID} tectonic && useradd --home ${MOUNTDIR} --uid ${UID} --gid ${GID} tectonic
+RUN addgroup --gid ${GID} tectonic && useradd --home /home/tectonic --uid ${UID} --gid ${GID} tectonic
+RUN mkdir /tectonic && chown tectonic:tectonic /tectonic
 
 USER tectonic
 
 VOLUME [ "${MOUNTDIR}" ]
+VOLUME [ "/home/tectonic/.cache" ]
+
 WORKDIR ${MOUNTDIR}
 
 ENTRYPOINT [ "tectonic" ]

@@ -7,5 +7,5 @@ This docker image provides a preinstalled [tectonic](https://tectonic-typesettin
 ## Usage
 ```bash
 # Note that the :z mount option only is neccessary on selinux plattforms
-docker run -ti --rm --volume ./:/tectonic:z fabianhauser/tectonic YourFile.tex
+docker run -ti --rm --volume ~/.cache/docker-tectonic:/home/tectonic/.cache:z --volume `pwd`:/tectonic:z fabianhauser/tectonic YourFile.tex
 ```
