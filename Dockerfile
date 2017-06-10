@@ -10,9 +10,9 @@ RUN conda install -y tectonic=${VERSION}
 
 RUN addgroup --gid ${GID} tectonic && useradd --home ${MOUNTDIR} --uid ${UID} --gid ${GID} tectonic
 
-USER [ "tectonic" ]
+USER tectonic
 
 VOLUME [ "${MOUNTDIR}" ]
-WORKDIR [ "${MOUNTDIR}" ]
+WORKDIR ${MOUNTDIR}
 
 ENTRYPOINT [ "tectonic" ]
