@@ -3,6 +3,7 @@ FROM alpine:3.6
 ARG UID=1000
 ARG GID=1000
 ARG MOUNTDIR=/tectonic
+ARG VERSION=0.1.6
 
 RUN mkdir -p /home/tectonic/.cache && addgroup -g ${GID} tectonic && adduser -D -h /home/tectonic -u ${UID} -G tectonic tectonic && chown -R tectonic:tectonic /home/tectonic
 RUN mkdir /tectonic && chown tectonic:tectonic /tectonic
@@ -12,7 +13,7 @@ RUN apk add --no-cache fontconfig-dev harfbuzz-dev harfbuzz-icu icu-dev freetype
 
 USER tectonic
 
-RUN cargo install tectonic
+RUN cargo install --vers ${VERSION} tectonic
 
 ENV PATH="/home/tectonic/.cargo/bin:${PATH}"
 
