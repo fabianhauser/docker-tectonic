@@ -12,7 +12,7 @@ USER tectonic
 RUN cd /tmp && busybox wget http://mirror.switch.ch/ftp/mirror/tex/indexing/makeindex.zip && unzip makeindex.zip && rm makeindex.zip
 RUN cd /tmp/makeindex/src/ && make && cp makeindex /home/tectonic/bin/ && chmod 555 /home/tectonic/bin/makeindex && rm -rf /tmp/makeindex
 RUN cd /home/tectonic/bin && busybox wget http://mirrors.ctan.org/macros/latex/contrib/glossaries/makeglossaries && chmod +x makeglossaries
-RUN cargo install --vers 0.1.6 tectonic
+RUN cargo install --vers 0.1.8 tectonic
 
 FROM alpine:3.8
 
