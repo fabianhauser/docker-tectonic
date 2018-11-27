@@ -9,7 +9,11 @@ This docker image provides a preinstalled [tectonic](https://tectonic-typesettin
 ```bash
 # Create cache directory (manually, or docker creates it as root:root)
 mkdir ~/.cache/docker-tectonic
-docker run -ti --rm --volume ~/.cache/docker-tectonic:/home/tectonic/.cache:z --volume `pwd`:/tectonic:z fabianhauser/tectonic YourFile.tex
+
+docker run -ti --rm \
+  --mount type=bind,source="$HOME/.cache/docker-tectonic/",target="/home/tectonic/.cache" \
+  --mount type=bind,source="`pwd`",target="/tectonic" \
+  fabianhauser/tectonic $@
 ```
 
 ## Utilities
