@@ -13,7 +13,7 @@ mkdir ~/.cache/docker-tectonic
 docker run -ti --rm \
   --mount type=bind,source="$HOME/.cache/docker-tectonic/",target="/home/tectonic/.cache" \
   --mount type=bind,source="`pwd`",target="/tectonic" \
-  fabianhauser/tectonic $@
+  fabianhauser/tectonic YourFile.tex
 ```
 
 ## Utilities
