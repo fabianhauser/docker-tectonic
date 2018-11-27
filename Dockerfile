@@ -5,7 +5,7 @@ RUN apk add --no-cache fontconfig-dev harfbuzz-dev harfbuzz-icu icu-dev freetype
 
 ARG UID=1000
 ARG GID=1000
-ARG TECTONIC_VERSION=0.1.8
+ARG TECTONIC_VERSION=0.1.11
 
 RUN addgroup -g ${GID} tectonic && \
     adduser -D -h /home/tectonic -u ${UID} -G tectonic tectonic
@@ -16,7 +16,7 @@ RUN cargo install --vers ${TECTONIC_VERSION} tectonic
 RUN mkdir /home/tectonic/bin
 # Get makeindex
 RUN cd /tmp && \
-    busybox wget http://mirror.switch.ch/ftp/mirror/tex/indexing/makeindex.zip && \
+    busybox wget http://mirrors.ctan.org/indexing/makeindex.zip && \
     unzip makeindex.zip && \
     rm makeindex.zip && \
     cd /tmp/makeindex/src/ && \
@@ -48,7 +48,6 @@ USER tectonic
 COPY --from=build /home/tectonic/.cargo/bin /home/tectonic/.cargo/bin
 COPY --from=build /home/tectonic/bin /home/tectonic/bin
 
-ADD config.toml /home/tectonic/.config/Tectonic/
 ENV PATH="/home/tectonic/.cargo/bin:/home/tectonic/bin/:${PATH}"
 
 VOLUME [ "${MOUNTDIR}" ]
