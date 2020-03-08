@@ -5,7 +5,7 @@ RUN apk add --no-cache fontconfig-dev harfbuzz-dev harfbuzz-icu icu-dev freetype
 
 ARG UID=1000
 ARG GID=1000
-ARG TECTONIC_VERSION=0.1.11
+ARG TECTONIC_VERSION=0.1.12
 
 RUN addgroup -g ${GID} tectonic && \
     adduser -D -h /home/tectonic -u ${UID} -G tectonic tectonic
