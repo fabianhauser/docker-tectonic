@@ -1,4 +1,4 @@
-FROM alpine:3.8 as build
+FROM alpine:3.12 as build
 
 RUN apk add --no-cache rust cargo openssl openssl-dev make g++
 RUN apk add --no-cache fontconfig-dev harfbuzz-dev harfbuzz-icu icu-dev freetype-dev graphite2-dev libpng-dev zlib-dev
@@ -31,7 +31,7 @@ RUN cd /home/tectonic/bin && \
     chmod 555 makeglossaries
 
 
-FROM alpine:3.8
+FROM alpine:3.12
 
 ARG UID=1000
 ARG GID=1000
